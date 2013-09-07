@@ -22,7 +22,11 @@ function walk(node) {
 
 function handleText(textNode) {
 	var v = textNode.nodeValue;
-	v = v.replace(/\bLinux\b/g, "GNU/Linux");
-	v = v.replace(/\blinux\b/g, "GNU/Linux");
+	v = v.replace(
+		/(GNU\/)?linux/ig,
+		function($0, $1) {
+            return $1 ? $0: 'GNU/Linux';
+		}
+	);
 	textNode.nodeValue = v;
 }
